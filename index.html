@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <link rel="stylesheet" href="style.css">
+  <title>For JY</title>
+</head>
+<body>
+  <div class="background">
+  </div>
+  
+  <div class="container">
+    <h1>게임을 시작하지</h1>
+    <p>지금 부터 집안 곳곳에 숨어 있는 문제를 찾기 위한 힌트를 줄걸세.</p>
+    <p>문제를 찾았다면, 그문제에 대한 답을 이 페이지에 적고 Enter누르면 된다네.</p>
+    <p>준비가 되었다면 아래 버튼을 눌러주시게.</p>
+    <a id='start-btn' class="waves-effect black waves-light btn">Start</a>
+  </div>
+
+  <div id="success" class="modal success">
+    <div class="modal-content">
+      <p>맞았네.</p>
+      <p>다음 게임을 시작하지.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:nextGame;" class="modal-close waves-effect waves-green btn-flat">확인</a>
+    </div>
+  </div>
+
+  <div id="fail" class="modal">
+    <div class="modal-content">
+      <p>틀렸네!!</p>
+      <p>자네 이것밖에 안되는가?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">확인</a>
+    </div>
+  </div>
+<script>
+  let level = 0;
+
+  $(document).ready(function(){
+    $('#start-btn').click(nextGame);
+    $('#fail').modal();
+    $('#success').modal({onCloseEnd: nextGame});
+  });
+
+  function nextGame() {
+    level += 1;
+    if (!problems[level]) {
+      showLetter();
+      return;
+    }
+    let [ question, answer ] = problems[level];
+    $('.container').html(`
+      <h4>${question}</h4>
+      <div class='input-group input-field'>
+        <label for="answer-input">정답</label>
+        <input class="white" id='answer-input' type="text">
+      </div>
+      <p class="result-text">틀렸습니다</p>
+    `);
+    $('.container').hide();
+    $('.container').fadeIn(1500);
+
+    $("#answer-input").keyup(function (e) {
+        if (e.keyCode === 13) {
+          if (this.value === answer) {
+            $('#success').modal('open');
+          } else {
+            $('#fail').modal('open');
+          }
+        }
+    })
+  }
+
+  function showLetter() {
+    $('.container').html(
+      `<div class="letter">
+        <p>${loveLetter}</p>
+       </div> 
+      `);
+      $('.container').hide();
+    setTimeout(function(){$('.container').fadeIn(7000);}, 5000);
+
+    backgroundImageList();
+    $('img').fadeIn(3000);
+    setTimeout(function(){$('img').animate({opacity: '0.1'}, 4000)}, 5000);
+  }
+
+  function backgroundImageList() {
+    let html = '';
+    new Array(18).fill(0)
+      .map((v, i) => i === 4? `<img src=img/${i}.gif>` : `<img src=img/${i}.jpeg>`)
+      .forEach(h => { html += h })
+    $('.background').html(html);
+  }
+
+</script> 
+<script src="content.js"></script>
+</body>
+</html>

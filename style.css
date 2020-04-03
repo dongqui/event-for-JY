@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'NeoDunggeunmo';
+}
+
+@font-face { 
+  font-family: 'NeoDunggeunmo'; 
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff') 
+  format('woff'); 
+  font-weight: normal; 
+  font-style: normal; 
+}
+
+@font-face { 
+  font-family: 'MapoGoldenPier'; 
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') 
+  format('woff'); 
+  font-weight: normal; 
+  font-style: normal; 
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  text-align: center;
+  font-size: 4rem;
+  border: 900;
+}
+
+.input-group {
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+}
+
+#start-btn {
+  margin-top: 30px;
+}
+
+.input-field input[type=text] {
+  text-align: center;
+}
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000 !important;
+  box-shadow: 0 1px 0 0 #000 !important;
+}
+
+.modal-content {
+  text-align: center !important;
+  padding-bottom: 0px !important;
+}
+
+.result-text {
+  display: none;
+}
+
+.modal-footer {
+  text-align: center !important;
+}
+
+.modal { width: 20% !important ;}  
+
+.letter > p{
+  white-space: pre-line;
+  text-align: left;
+  margin-top: 100px;
+  width: 100%;
+  font-family: 'MapoGoldenPier';
+  font-weight: 900;
+  margin-left: 100px;
+}
+
+.background {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+img {
+  flex: 1 1 auto;
+  display: none;
+  width: 15%;
+  /* opacity: 0.2; */
+}
